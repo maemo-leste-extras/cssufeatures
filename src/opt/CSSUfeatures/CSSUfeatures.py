@@ -19,9 +19,10 @@ import os
 import sys
 import time
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
-from PyQt4.QtMaemo5 import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+#from PyQt4.QtMaemo5 import *
 from CSSUfeaturesUI import *
 
 #############################################################################################################
@@ -191,13 +192,16 @@ def doUpdateConfigTheme():
     else: 
        return True
 
-class CSSUfeaturesFixConfig(QtGui.QMainWindow):
+class CSSUfeaturesFixConfig(QMainWindow):
 
     def __init__(self, parent=None):
-       QtGui.QMainWindow.__init__(self,parent)
+       QMainWindow.__init__(self,parent)
        self.parent = parent
-       self.setAttribute(Qt.WA_Maemo5AutoOrientation, True)
-       self.setAttribute(Qt.WA_Maemo5StackedWindow, True)
+       #self.setAttribute(Qt.WA_Maemo5AutoOrientation, True)
+       self.window().setProperty("X-Maemo-Orientation", 2)
+       #self.setAttribute(Qt.WA_Maemo5StackedWindow, True)
+       self.window().setProperty("X-Maemo-StackedWindow", 1)
+
        self.setWindowTitle("Missing Configuration")
        self.showFullScreen()
 
@@ -207,8 +211,9 @@ class CSSUfeaturesFixConfig(QtGui.QMainWindow):
        awidget.setSizePolicy( QSizePolicy.Expanding, QSizePolicy.Expanding )
        aboutScrollArea.setSizePolicy( QSizePolicy.Expanding, QSizePolicy.Expanding )
        try:
-          scroller = aboutScrollArea.property("kineticScroller").toPyObject()
-          scroller.setEnabled(True)
+          QtWidgets.QScroller.grabGesture(aboutScrollArea.viewport(), QtWidgets.QScroller.LeftMouseButtonGesture)
+          #scroller = aboutScrollArea.property("kineticScroller").toPyObject()
+          #scroller.setEnabled(True)
        except:
           pass
 
@@ -347,13 +352,15 @@ class CSSUfeaturesFixConfig(QtGui.QMainWindow):
        # self.close()   
        sys.exit(1)
 
-class CSSUfeaturesAbout(QtGui.QMainWindow):
+class CSSUfeaturesAbout(QMainWindow):
     '''About Window'''
     def __init__(self, parent=None):
        QMainWindow.__init__(self,parent)
        self.parent = parent
-       self.setAttribute(Qt.WA_Maemo5AutoOrientation, True)
-       self.setAttribute(Qt.WA_Maemo5StackedWindow, True)
+       #self.setAttribute(Qt.WA_Maemo5AutoOrientation, True)
+       self.window().setProperty("X-Maemo-Orientation", 2)
+       #self.setAttribute(Qt.WA_Maemo5StackedWindow, True)
+       self.window().setProperty("X-Maemo-StackedWindow", 1)
        self.setWindowTitle("About CSSU Features Configuration")
 
        aboutScrollArea = QScrollArea(self)
@@ -364,8 +371,9 @@ class CSSUfeaturesAbout(QtGui.QMainWindow):
        aboutScrollArea.setSizePolicy( QSizePolicy.Expanding, QSizePolicy.Expanding )
        #Kinetic scroller is available on Maemo and should be on meego
        try:
-          scroller = aboutScrollArea.property("kineticScroller").toPyObject()
-          scroller.setEnabled(True)
+          QtWidgets.QScroller.grabGesture(aboutScrollArea.viewport(), QtWidgets.QScroller.LeftMouseButtonGesture)
+          #scroller = aboutScrollArea.property("kineticScroller").toPyObject()
+          #scroller.setEnabled(True)
        except:
           pass
 
@@ -408,29 +416,33 @@ class CSSUfeaturesAbout(QtGui.QMainWindow):
     def open_bugtracker(self):
        QDesktopServices.openUrl(QUrl('https://bugs.maemo.org'))
 
-class CSSUfeaturesMainWindow(QtGui.QMainWindow):
+class CSSUfeaturesMainWindow(QMainWindow):
     def __init__(self, parent=None):
        
        ##Build parent user interface
-       QtGui.QWidget.__init__(self, parent)
+       QWidget.__init__(self, parent)
        self.ui = Ui_CSSUfeaturesUI()
        self.ui.setupUi(self)
-       self.setAttribute(Qt.WA_Maemo5AutoOrientation, True)
-       self.setAttribute(Qt.WA_Maemo5StackedWindow, True)
+       #self.setAttribute(Qt.WA_Maemo5AutoOrientation, True)
+       self.window().setProperty("X-Maemo-Orientation", 2)
+       #self.setAttribute(Qt.WA_Maemo5StackedWindow, True)
+       self.window().setProperty("X-Maemo-StackedWindow", 1)
        
        ##Connect the GUI Buttons with actions
-         ##Create Settings
-       QtCore.QObject.connect(self.ui.btnCreateConfig, QtCore.SIGNAL('clicked()'), self.doCreateConfig)
-       QtCore.QObject.connect(self.ui.btnSetCurrent, QtCore.SIGNAL('clicked()'), self.doSetCurrent)
-       QtCore.QObject.connect(self.ui.btnSetDefault, QtCore.SIGNAL('clicked()'), self.doSetDefault)
+       ##Create Settings
+       self.ui.btnCreateConfig.clicked.connect(self.doCreateConfig)
+       self.ui.btnSetCurrent.clicked.connect(self.doSetCurrent)
+       self.ui.btnSetDefault.clicked.connect(self.doSetDefault)
        
-         ##Connect Menu Buttons 
-       QtCore.QObject.connect(self.ui.actionQuit, QtCore.SIGNAL('triggered()'), QtGui.qApp, QtCore.SLOT('quit()'))
-       QtCore.QObject.connect(self.ui.actionAbout, QtCore.SIGNAL('triggered()'), self.showAbout)
-       QtCore.QObject.connect(self.ui.actionRestoreDefaults, QtCore.SIGNAL('triggered()'), self.restoreDefaultConfigFile)
-       QtCore.QObject.connect(self.ui.actionRebootDevice, QtCore.SIGNAL('triggered()'), self.rebootDevice)
-       QtCore.QObject.connect(self.ui.actionAddPowerKeyEntry, QtCore.SIGNAL('triggered()'), self.addPowerKeyEntry)
-       QtCore.QObject.connect(self.ui.actionRemovePowerKeyEntry, QtCore.SIGNAL('triggered()'), self.removePowerKeyEntry)
+       ##Connect Menu Buttons 
+       self.ui.actionQuit.triggered.connect(QtWidgets.qApp.quit)
+
+       self.ui.actionAbout.triggered.connect(self.showAbout)
+       self.ui.actionRestoreDefaults.triggered.connect(self.restoreDefaultConfigFile)
+       self.ui.actionRebootDevice.triggered.connect(self.rebootDevice)
+       self.ui.actionAddPowerKeyEntry.triggered.connect(self.addPowerKeyEntry)
+       self.ui.actionRemovePowerKeyEntry.triggered.connect(self.removePowerKeyEntry)
+
          ##Enable only the valid menu entry 
        if checkFile(PathSystemUi, ConfigSystemUi) == True:
           self.ui.actionAddPowerKeyEntry.setEnabled(False)
@@ -448,6 +460,17 @@ class CSSUfeaturesMainWindow(QtGui.QMainWindow):
           self.fixConfigFileVariables()
        else:
           self.doSetCurrent()
+
+       QtWidgets.QScroller.grabGesture(self.ui.scrollArea.viewport(), QtWidgets.QScroller.LeftMouseButtonGesture)
+
+    #def changeEvent(self, event):
+    #   # TODO: this needs fixing
+    #   print('event', event, event.type())
+    #   if event.type() == QEvent.ActivationChange:
+    #       print('windowActivate')
+    #       QtWidgets.QScroller.grabGesture(self.ui.scrollArea.viewport(), QtWidgets.QScroller.LeftMouseButtonGesture)
+
+    #   QtWidgets.QWidget.changeEvent(self, event)
           
     ##Create Methods
 
@@ -707,12 +730,12 @@ class CSSUfeaturesMain():
        pass
     
     ##Check if CSSU is installed
-    if checkCSSUinstalled() == False:
-       message = 'WARNING: The Community SSU is not installed.\nSome features might not work correctly..'
-       showMessage(message)
-       #sys.exit(1)
-    else:
-       pass
+    #if checkCSSUinstalled() == False:
+    #   message = 'WARNING: The Community SSU is not installed.\nSome features might not work correctly..'
+    #   showMessage(message)
+    #   #sys.exit(1)
+    #else:
+    #   pass
      
     ##Check if temp folder is available
     if os.path.exists(PathTemp) == False:
@@ -724,7 +747,7 @@ class CSSUfeaturesMain():
     copyConfigFile()
     
     ##Open Main Window
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     myapp = CSSUfeaturesMainWindow()
     myapp.show()
     sys.exit(app.exec_())
