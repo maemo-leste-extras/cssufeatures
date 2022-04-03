@@ -1,20 +1,20 @@
 Source: cssufeatures
 Section: user/system
 Priority: extra
-Maintainer: Christos Zamantzas <christos.zamantzas@gmail.com>
+Maintainer: Merlijn Wajer <merlijn@wizzup.org>
 Build-Depends: debhelper (>= 5)
 Standards-Version: 3.7.2
 
 Package: cssufeatures
 XB-Maemo-Display-Name: CSSU Features Configuration
-Architecture: armel
-Depends: python2.5, python2.5-qt4-gui, python2.5-qt4-core, python2.5-qt4-maemo5
+Architecture: all
+Depends: python-pyqt5
 Suggests: 
 Description: The CSSU Features Configuration application is a user interface to the configuration of several parameters enabled by the Community SSU updates.
  It provides the ability to change a number of parameter values by modifing several options in the transitions.ini configuration file as well as in the GConf configuration system.
  Additional information on the usage, settings and implications could be found in http://wiki.maemo.org/CSSU_Features_Configuration_Editor
 XB-Maemo-Upgrade-Description: 
-XSBC-Bugtracker: mailto:christos.zamantzas@gmail.com
+XSBC-Bugtracker: mailto:merlijn@wizzup.org
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGOfPtRkwAAACBjSFJN
  AACHDwAAjA8AAP1SAACBQAAAfXkAAOmLAAA85QAAGcxzPIV3AAAKOWlDQ1BQaG90b3Nob3AgSUND

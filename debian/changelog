@@ -1,3 +1,9 @@
+cssufeatures (3.0-1) stable; urgency=low
+
+  * Initial Maemo Leste import
+
+ -- Merlijn Wajer <merlijn@wizzup.org>  Sun, 03 Apr 2022 12:28:25 +0200
+
 cssufeatures (2.5-6) stable; urgency=low
 
   * Added new option to the missing variables window for restoring the transitions.ini file.

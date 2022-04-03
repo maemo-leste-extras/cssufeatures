@@ -16,6 +16,6 @@ then
    rm -rf /home/user/.CSSUfeatures/*
 fi
 gtk-update-icon-cache -f /usr/share/icons/hicolor
-update-sudoers
+#update-sudoers
 ln -s /opt/CSSUfeatures/CSSUfeatures.xml /etc/systemui/CSSUfeatures.xml
 killall systemui
