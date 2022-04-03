@@ -1,0 +1,7 @@
+#!/bin/sh
+rm /opt/CSSUfeatures/*.pyc
+if [ -f /etc/systemui/CSSUfeatures.xml ]
+then
+    rm /etc/systemui/CSSUfeatures.xml
+    killall systemui
+fi    

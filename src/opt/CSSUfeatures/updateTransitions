@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# Copyright (c) 2011 Christos Zamantzas
+# Licenced under GPLv2
+
+########################################################################
+## CSSU Features Configuration 
+##
+## Configuration UI for the Community SSU features
+## for info on the features it provides access see: 
+## http://wiki.maemo.org/Community_SSU/Features
+########################################################################
+
+##Author: Christos Zamantzas <christos.zamantzas@gmail.com>
+
+##Last changed on version = '2.5'
+
+[ "$(whoami)" != 'root' ] && ( echo you are using a non-privileged account; exit 1 )
+
+if [ "$1" == 'copyTempSystem' ]; then cp /home/user/.CSSUfeatures/CSSUfeatures_temp_system /usr/share/hildon-desktop/transitions.ini; fi  
+if [ "$1" == 'copyTempTheme' ];  then cp /home/user/.CSSUfeatures/CSSUfeatures_temp_theme /etc/hildon/theme/transitions.ini; fi  
+if [ "$1" == 'copyDefault' ];    then cp /usr/share/hildon-desktop/transitions.ini.default /usr/share/hildon-desktop/transitions.ini; fi  
+if [ "$1" == 'rebootDevice' ];   then sleep 5; reboot; fi
+
+#add/remove entry in the power key menu
+if [ "$1" == 'addPowerKeyEntry' ];     then ln -s /opt/CSSUfeatures/CSSUfeatures.xml /etc/systemui/CSSUfeatures.xml; fi  
+if [ "$1" == 'deletePowerKeyEntry' ];  then rm /etc/systemui/CSSUfeatures.xml; fi  
+if [ "$1" == 'updatePowerKeyEntry' ];  then killall systemui; fi 
+
+#add missing options in the transitions.ini file
+if [ "$2" == 'configSystem' ]; then
+   if [ "$1" == 'addzoom_on_press' ];        then echo "zoom_on_press = 0" >> /usr/share/hildon-desktop/transitions.ini; fi  
+   if [ "$1" == 'addparallax' ];             then echo "parallax = 1.3" >> /usr/share/hildon-desktop/transitions.ini; fi  
+   if [ "$1" == 'addblurless' ];             then echo "blurless = 0" >> /usr/share/hildon-desktop/transitions.ini; fi  
+   if [ "$1" == 'addblurless_saturation' ];  then echo "blurless_saturation = 0" >> /usr/share/hildon-desktop/transitions.ini; fi  
+   if [ "$1" == 'addtaskswitcher' ];         then echo "taskswitcher = 0" >> /usr/share/hildon-desktop/transitions.ini; fi  
+   if [ "$1" == 'addzaxisrotation' ];        then echo "zaxisrotation = 0" >> /usr/share/hildon-desktop/transitions.ini; fi  
+   if [ "$1" == 'addforcerotation' ];        then echo "forcerotation = 0" >> /usr/share/hildon-desktop/transitions.ini; fi  
+   if [ "$1" == 'addtactilepopups' ];        then echo "tactilepopups = 0" >> /usr/share/hildon-desktop/transitions.ini; fi  
+fi
+
+#add missing options in the transitions.ini file when a theme is used
+if [ "$2" == 'configTheme' ]; then
+   if [ "$1" == 'addzoom_on_press' ];        then echo "zoom_on_press = 0" >> /etc/hildon/theme/transitions.ini; fi 
+   if [ "$1" == 'addparallax' ];             then echo "parallax = 1.3" >> /etc/hildon/theme/transitions.ini; fi 
+   if [ "$1" == 'addblurless' ];             then echo "blurless = 0" >> /etc/hildon/theme/transitions.ini; fi 
+   if [ "$1" == 'addblurless_saturation' ];  then echo "blurless_saturation = 0" >> /etc/hildon/theme/transitions.ini; fi 
+   if [ "$1" == 'addtaskswitcher' ];         then echo "taskswitcher = 0" >> /etc/hildon/theme/transitions.ini; fi 
+   if [ "$1" == 'addzaxisrotation' ];        then echo "zaxisrotation = 0" >> /etc/hildon/theme/transitions.ini; fi 
+   if [ "$1" == 'addforcerotation' ];        then echo "forcerotation = 0" >> /etc/hildon/theme/transitions.ini; fi 
+   if [ "$1" == 'addtactilepopups' ];        then echo "tactilepopups = 0" >> /etc/hildon/theme/transitions.ini; fi 
+fi

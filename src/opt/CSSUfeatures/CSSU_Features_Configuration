@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from CSSUfeatures import *
+if __name__ == "__main__":
+  CSSUfeaturesMain()

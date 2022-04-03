@@ -1,0 +1,26 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=CSSU Features
+Comment=Editor to help in configuring the Community SSU enabled features  
+Terminal=false
+Type=application
+Exec=/opt/CSSUfeatures/CSSU_Features_Configuration
+Icon=CSSUfeatures
+X-Icon-path=/usr/share/icons
+X-Window-Icon=CSSUfeatures
+X-Window-Icon-Dimmed=CSSUfeatures
+X-HildonDesk-ShowInToolbar=true
+Type=Application
+X-Osso-Type=application/x-executable
+
+# [Desktop Entry]
+# Encoding=UTF-8
+# Version=1.0
+# Name=CSSU Features
+# Comment=Editor to help in configuring the Community SSU enabled features  
+# Type=HildonControlPanelPlugin
+# X-Icon-path=/usr/share/icons
+# Icon=CSSUfeatures
+# X-control-panel-plugin=CSSU_Features_Configuration
+# Categories=personalisation
