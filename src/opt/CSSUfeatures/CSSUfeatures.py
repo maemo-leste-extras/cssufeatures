@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # Copyright (c) 2011 Christos Zamantzas
 # Licenced under GPLv2
@@ -266,64 +266,64 @@ class CSSUfeaturesFixConfig(QMainWindow):
           configLocation = 'configTheme'
        else: 
           configLocation = ''
-       print "fixing config file: ", configLocation
+       print("fixing config file: ", configLocation)
           
        message = 'Start of fixing\n'
        if 'zoom_on_press' not in dataVars:
           os.system('sudo %s%s addzoom_on_press %s' % (PathApp, updateSettings, configLocation))
           message += 'WARNING: Added the zoom_on_press option..\n'
-          print message
+          print(message)
        else:
-          print 'zoom_on_press exists!!'
+          print('zoom_on_press exists!!')
 
        if 'parallax' not in dataVars:
           os.system('sudo %s%s addparallax %s' % (PathApp, updateSettings, configLocation))
           message += 'WARNING: Added the parallax option..\n'
-          print message
+          print(message)
        else:
-          print 'parallax exists!!'
+          print('parallax exists!!')
 
        if 'blurless' not in dataVars:
           os.system('sudo %s%s addblurless %s' % (PathApp, updateSettings, configLocation))
           message += 'WARNING: Added the blurless option..\n'
-          print message
+          print(message)
        else:
-          print 'blurless exists!!'
+          print('blurless exists!!')
                       
        if 'blurless_saturation' not in dataVars:
           os.system('sudo %s%s addblurless_saturation %s' % (PathApp, updateSettings, configLocation))
           message += 'WARNING: Added the blurless_saturation option..\n'
-          print message
+          print(message)
        else:
-          print 'blurless_saturation exists!!'
+          print('blurless_saturation exists!!')
                       
        if 'taskswitcher' not in dataVars:
           os.system('sudo %s%s addtaskswitcher %s' % (PathApp, updateSettings, configLocation))
           message += 'WARNING: Added the taskswitcher option..\n'
-          print message
+          print(message)
        else:
-          print 'taskswitcher exists!!'
+          print('taskswitcher exists!!')
                       
        if 'zaxisrotation' not in dataVars:
           os.system('sudo %s%s addzaxisrotation %s' % (PathApp, updateSettings, configLocation))
           message += 'WARNING: Added the zaxisrotation option..\n'
-          print message
+          print(message)
        else:
-          print 'zaxisrotation exists!!'
+          print('zaxisrotation exists!!')
                       
        if 'forcerotation' not in dataVars:
           os.system('sudo %s%s addforcerotation %s' % (PathApp, updateSettings, configLocation))
           message += 'WARNING: Added the forcerotation option..\n'
-          print message
+          print(message)
        else:
-          print 'forcerotation exists!!'
+          print('forcerotation exists!!')
                       
        if 'tactilepopups' not in dataVars:
           os.system('sudo %s%s addtactilepopups %s' % (PathApp, updateSettings, configLocation))
           message += 'WARNING: Added the tactilepopups option..\n'
-          print message
+          print(message)
        else:
-          print 'tactilepopups exists!!'
+          print('tactilepopups exists!!')
 
        message += 'End of fixing\n\n'
        message += 'The application will now exit..'
@@ -456,7 +456,7 @@ class CSSUfeaturesMainWindow(QMainWindow):
        
        ##Check if all values exist
        if fixNeeded == 'true':   
-          print "fix is needed"
+          print("fix is needed")
           self.fixConfigFileVariables()
        else:
           self.doSetCurrent()
