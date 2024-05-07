@@ -1,3 +1,9 @@
+cssufeatures (4.0-1) stable; urgency=low
+
+  * Python 3 port
+
+ -- Merlijn Wajer <merlijn@wizzup.org>  Tue, 07 May 2024 12:30:54 +0200
+
 cssufeatures (3.0-1) stable; urgency=low
 
   * Initial Maemo Leste import
