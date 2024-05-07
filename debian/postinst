@@ -1,8 +1,6 @@
 #!/bin/sh
 chmod 644 /usr/share/applications/hildon/CSSUfeatures.desktop
 chmod 644 /etc/sudoers.d/CSSUfeatures.sudoers
-python3 -m compileall /opt/CSSUfeatures/
-rm /opt/CSSUfeatures/*.py
 chmod 644 /opt/CSSUfeatures/*
 chmod 755 /opt/CSSUfeatures/CSSU_Features_Configuration
 chmod 744 /opt/CSSUfeatures/updateTransitions
